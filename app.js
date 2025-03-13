@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
+const cors = require("cors");
 app.use(cors({
   origin: "*",
   credentials: true
@@ -15,7 +16,7 @@ app.use(express.urlencoded({ extended : true}));
 app.use(express.static(path.join(__dirname,'public')));
 app.set('view.engine','ejs');
 const PORT = process.env.PORT || 3000;
-const cors = require("cors");
+
 app.use(cors({
     origin: "https://user-data-dun.vercel.app/", // Replace with your Vercel domain
     credentials: true
