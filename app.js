@@ -72,7 +72,7 @@ app.post('/login',async(req,res)=>{
                 secure: true,    // Required for HTTPS
                 sameSite: "None" // Allows cross-origin cookies (Vercel → Railway)
             });
-            return res.render("data.ejs",{users:user});
+            return res.render("data.ejs",{users:{user}});
         } else {
            
             return res.status(401).send("something wents wrong...");
