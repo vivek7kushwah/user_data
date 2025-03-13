@@ -10,15 +10,19 @@ const userModel = require('./usermodule');
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 app.use(express.static(path.join(__dirname,'public')));
-app.set('view.engine','ejs');
-
+app.set('view engine','ejs');
+const cors = require("cors");
+app.use(cors({
+    origin: "https://user-data-dun.vercel.app", // Replace with your Vercel domain
+    credentials: true
+}));
 app.get('/',(req,res)=>{
     res.render("index.ejs");
 })
 
 app.post('/create' ,(req,res)=>{
     bcrypt.genSalt(10, (err,salt)=>{
-        bcrypt.hash(req.body.user_possword, salt, async(err,hash)=>{
+        bcrypt.hash(req.body.possword, salt, async(err,hash)=>{
             let id = req.body.kerbors_id;
             let user = await userModel.create({
                 name : req.body.user_name,
@@ -63,7 +67,11 @@ app.post('/login',async(req,res)=>{
         if (result) {
             let id = req.body.kerbors_id;
             let token = jwt.sign({id}, "dfvdouyvgh");
-            res.cookie("token",token);
+            res.cookie("token", token, {
+                httpOnly: true,  // Prevents client-side JavaScript access
+                secure: true,    // Required for HTTPS
+                sameSite: "None" // Allows cross-origin cookies (Vercel → Railway)
+            });
             return res.status(200).send(user);
         } else {
            
@@ -73,6 +81,7 @@ app.post('/login',async(req,res)=>{
     
 })
 
-app.listen(3000,(err)=>{
-    console.log("it started...")
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server started on port ${PORT}`);
+});
