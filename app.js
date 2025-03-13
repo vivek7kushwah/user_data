@@ -44,7 +44,7 @@ app.get('/logout',async(req,res)=>{
 })
 app.get('/viewdata',async(req,res)=>{
     let users = await userModel.find();
-    res.render("data.ejs",{ users : users });
+    res.render("data.ejs",{users : users });
 })
 app.get('/delete/:kerbors_id',async(req,res)=>{
     let user = await userModel.findOneAndDelete({ kerbors_id : req.params.kerbors_id});
@@ -72,9 +72,8 @@ app.post('/login',async(req,res)=>{
                 secure: true,    // Required for HTTPS
                 sameSite: "None" // Allows cross-origin cookies (Vercel → Railway)
             });
-            return res.render("data.ejs",{users:{user}});
+            return res.status(200).render("data.ejs",{users:{user}});
         } else {
-           
             return res.status(401).send("something wents wrong...");
         }
     })

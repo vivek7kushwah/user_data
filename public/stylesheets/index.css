@@ -1,0 +1,36 @@
+*{
+    padding: 0%;
+    margin: 0%;
+}
+body{
+    background-image: url('https://img.freepik.com/free-vector/blue-curve-background_53876-113112.jpg');
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    div{
+        form{
+            display: flex;
+            flex-direction: column;
+            justify-content:space-around;
+            align-items: center;
+            input{
+                margin: 5px;
+                width: 30vw;
+                height: 20px;
+            }
+            
+        }
+        width: 90vw;
+        justify-content:space-around;
+        align-items: center;
+        display: flex;
+        height: 200px;
+        flex-direction: column;
+        border: 2px solid black;
+        padding: 15px;
+        margin: 15px;
+    }
+}
