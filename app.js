@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 app.use(express.static(path.join(__dirname,'public')));
 app.set('view.engine','ejs');
-const cors = require("cors");
-app.use(cors({
-    origin: "https://user-data-dun.vercel.app", // Replace with your Vercel domain
-    credentials: true
-}));
+// const cors = require("cors");
+// app.use(cors({
+//     origin: "https://user-data-dun.vercel.app", // Replace with your Vercel domain
+//     credentials: true
+// }));
 app.get('/',(req,res)=>{
     res.render("index.ejs");
 })
@@ -81,7 +81,10 @@ app.post('/login',async(req,res)=>{
     
 })
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server started on port ${PORT}`);
-});
+// const PORT = process.env.PORT || 3000;
+// app.listen(PORT, () => {
+//     console.log(`Server started on port ${PORT}`);
+// });
+app.listen(3000,()=>{
+    console.log(`Server started`)
+})
