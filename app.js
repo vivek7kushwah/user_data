@@ -10,7 +10,7 @@ const userModel = require('./usermodule');
 app.use(express.json());
 app.use(express.urlencoded({ extended : true}));
 app.use(express.static(path.join(__dirname,'public')));
-app.set('view engine','ejs');
+app.set('view.engine','ejs');
 const cors = require("cors");
 app.use(cors({
     origin: "https://user-data-dun.vercel.app", // Replace with your Vercel domain
