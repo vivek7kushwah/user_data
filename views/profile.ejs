@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+</head>
+<body>
+    <h1>HELLO <%= user.name %></h1>
+    <h2>your id is <%= user.kerbors_id %> </h2>
+    <br>
+    <br>
+    <a href="/logout">LOG OUT </a>
+    <form method="post" action="/<%= user._id %>/createpost">
+        <h2>CREATE A NEW POST...</h2>
+        <input style="display:block; height: 300px; width: 50vw; text-align: center; "  type="text" name="content" placeholder="write what are you thinking...">
+        <button style="background-color: rgb(81, 81, 227); border-radius: 3px;" type="submit" >Create post</button>
+    </form>
+    <div style="display: flex; ">
+        <% user.posts.forEach((post)=>{ %>
+            <div style="display: flex;height: 220px; width: 150px; border: 2px solid black;flex-direction: column; margin: 5px; padding: 5px;">
+                <h3>this is post of <%= user.name%></h3>
+                <p> <%= post.content %></p>
+                <p> <%= post.likes.length %></p>
+                <% if (post.likes.includes(user._id)){ %>
+                    <a href="/<%= post._id %>/likepost/<%= user._id %>"> ❤️</a>
+                <% }else{ %>
+                    <a href="/<%= post._id %>/likepost/<%= user._id %>"> 🤍</a>
+                <% } %>
+            </div>
+        <% })%>
+    </div>
+
+    
+</body>
+</html>
