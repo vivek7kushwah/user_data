@@ -130,6 +130,6 @@ app.get("/:post_id/likepost/:user_id",async (req,res)=>{
 //     console.log(`Server started on port ${PORT}`);
 // });
 
-app.listen(3000,()=>{
+app.listen(3000,'0.0.0.0',()=>{
     console.log(`Server started`)
 })
